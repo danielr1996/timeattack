@@ -8,3 +8,4 @@ Track your daily working time
 * Show over hours per day/week/month
 * Subtract time from overhours(freizeitausgleich)
 * Show summary in calendar
+* Set personal preferences(daily/weekly) working time, daily pause time, etc
