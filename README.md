@@ -1,7 +1,7 @@
 # timeattack
 Track your daily working time
 
-##Features
+## Features
 * Track individual working periods (e.g. morning/evening)
 * Sum/group Working hours per day/week/month
 * Align working times with working time laws ( add pauses after 6/9 hours automatically)
