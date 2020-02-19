@@ -5,11 +5,13 @@ import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {ReactiveFormsModule} from "@angular/forms";
 import { TimeOverviewComponent } from './components/time-overview/time-overview.component';
+import {MatListModule} from "@angular/material/list";
+import { TimePipe } from './pipes/time.pipe';
 
 
 
 @NgModule({
-  declarations: [TimeAddComponent, TimeOverviewComponent],
+  declarations: [TimeAddComponent, TimeOverviewComponent, TimePipe],
   exports: [
     TimeAddComponent,
     TimeOverviewComponent
@@ -18,7 +20,8 @@ import { TimeOverviewComponent } from './components/time-overview/time-overview.
     CommonModule,
     MatInputModule,
     MatButtonModule,
-    ReactiveFormsModule
+    MatListModule,
+    ReactiveFormsModule,
   ]
 })
 export class TimeModule { }

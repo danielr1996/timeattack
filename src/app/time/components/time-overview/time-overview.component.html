@@ -1,3 +1,3 @@
-<ul>
-  <li *ngFor="let timeEntry of timeEntries$ | async">{{timeEntry.start.hour}}:{{timeEntry.start.minute}} - {{timeEntry.end.hour}}:{{timeEntry.end.minute}}</li>
-</ul>
+<mat-list role="list">
+  <mat-list-item *ngFor="let timeEntry of timeEntries$ | async" role="listitem">{{timeEntry | time}}</mat-list-item>
+</mat-list>
