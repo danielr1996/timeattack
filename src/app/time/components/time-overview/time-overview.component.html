@@ -1,0 +1,3 @@
+<ul>
+  <li *ngFor="let timeEntry of timeEntries$ | async">{{timeEntry.start.hour}}:{{timeEntry.start.minute}} - {{timeEntry.end.hour}}:{{timeEntry.end.minute}}</li>
+</ul>

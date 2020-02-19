@@ -9,3 +9,5 @@ Track your daily working time
 * Subtract time from overhours(freizeitausgleich)
 * Show summary in calendar
 * Set personal preferences(daily/weekly) working time, daily pause time, etc
+* Export / Import / Merge Import
+* Device sync (minio)
