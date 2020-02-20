@@ -10,11 +10,14 @@ import {MatIconModule} from "@angular/material/icon";
 import { TimeRangePipe } from './pipes/time-range.pipe';
 import {MatDatepicker, MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
+import { TimeGroupComponent } from './components/time-group/time-group.component';
+import { TimeRowComponent } from './components/time-row/time-row.component';
+import { TimePipe } from './pipes/time.pipe';
 
 
 
 @NgModule({
-  declarations: [TimeAddComponent, TimeOverviewComponent, TimeRangePipe],
+  declarations: [TimeAddComponent, TimeOverviewComponent, TimeRangePipe, TimeGroupComponent, TimeRowComponent, TimePipe],
   exports: [
     TimeAddComponent,
     TimeOverviewComponent

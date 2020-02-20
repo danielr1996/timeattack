@@ -24,17 +24,12 @@ export class TimeOverviewComponent implements OnInit {
       }));
     })
   );
-  public delete$: Subject<string> = new Subject<string>();
 
   constructor(private timeRangeStore: TimeRangeStore, private timeRangeQuery: TimeRangeQuery) {
   }
 
   ngOnInit() {
-    this.delete$.pipe(
-      tap(id => {
-        this.timeRangeStore.remove(id);
-      })
-    ).subscribe();
+
 
   }
 

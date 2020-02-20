@@ -6,11 +6,11 @@
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Start der Arbeit</mat-label>
-    <input [formControlName]="'start'" required matInput placeholder="Ende der Arbeit">
+    <input [formControlName]="'start'" required matInput placeholder="Start der Arbeit">
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Ende der Arbeit</mat-label>
-    <input [formControlName]="'end'" required matInput placeholder="Start der Arbeit">
+    <input [formControlName]="'end'" required matInput placeholder="Ende der Arbeit">
   </mat-form-field>
   <button (click)="save$.next()" mat-raised-button>Hinzufügen</button>
 </form>
