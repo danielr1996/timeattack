@@ -1,0 +1,10 @@
+<mat-list-item role="listitem">
+  <div class="flex">
+    <mat-icon>access_time</mat-icon>
+    <span>{{timeRange | timeRange}}</span>
+    <span>{{totalHours$ | async | time}}</span>
+    <button mat-icon-button aria-label="Delete entry">
+      <mat-icon (click)="delete$.next(timeRange.id)">delete</mat-icon>
+    </button>
+  </div>
+</mat-list-item>
