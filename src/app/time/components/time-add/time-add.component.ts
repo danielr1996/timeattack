@@ -2,9 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Subject} from "rxjs";
 import {tap} from "rxjs/operators";
-import {TimeEntryStore} from "../../store/TimeEntryStore";
+import {TimeRangeStore} from "../../store/time-range-store.service";
 import {v4 as uuid} from 'uuid'
-import {PointInTime} from "../../store/time-entry";
+import { setMinutes, setHours,parse } from 'date-fns/fp'
+import flow from 'lodash/fp/flow'
 
 @Component({
   selector: 'app-time-add',
@@ -15,8 +16,9 @@ export class TimeAddComponent implements OnInit {
   public save$: Subject<void> = new Subject<void>();
   public form: FormGroup;
 
-  constructor(private fb: FormBuilder, private timeEntryStore: TimeEntryStore) {
+  constructor(private fb: FormBuilder, private timeRangeStore: TimeRangeStore) {
     this.form = fb.group({
+      date: fb.control(new Date(), [Validators.required]),
       start: fb.control('', [Validators.required, Validators.pattern(/^[0-2][0-9]:[0-6][0-9]$/)]),
       end: fb.control('', [Validators.required, Validators.pattern(/^[0-2][0-9]:[0-6][0-9]$/)]),
     })
@@ -26,10 +28,10 @@ export class TimeAddComponent implements OnInit {
     this.save$.pipe(
       tap(() => {
         if (this.form.valid) {
-          this.timeEntryStore.add({
+          this.timeRangeStore.add({
             id: uuid(),
-            start: this.parsePointInTime(this.form.get('start').value),
-            end: this.parsePointInTime(this.form.get('end').value)
+            start: this.parseDate(this.form.get('start').value, this.form.get('date').value),
+            end: this.parseDate(this.form.get('end').value, this.form.get('date').value)
           })
         } else {
           console.error('Form not valid')
@@ -38,8 +40,8 @@ export class TimeAddComponent implements OnInit {
     ).subscribe();
   }
 
-  private parsePointInTime(timeString: string): PointInTime {
-    let [hours, minute] = timeString.split(':');
-    return {hour: parseInt(hours), minute: parseInt(minute)}
+  private parseDate(timeString: string, date: Date): Date {
+    let [hour, minute]:number[] = timeString.split(':').map(s=>parseInt(s));
+    return flow(setMinutes(minute),setHours(hour))(date);
   }
 }

@@ -1,14 +1,13 @@
 import {EntityState, EntityStore, QueryEntity, StoreConfig} from "@datorama/akita";
-import {TimeEntry} from "./time-entry";
+import {TimeRange} from "./time-range";
 import {Injectable} from "@angular/core";
-
-export interface TimeEntryState extends EntityState<TimeEntry, string> { }
+export interface TimeRangeState extends EntityState<TimeRange, string> { }
 
 @Injectable({
   providedIn: 'root'
 })
 @StoreConfig({ name: 'timeEntries' })
-export class TimeEntryStore extends EntityStore<TimeEntryState> {
+export class TimeRangeStore extends EntityStore<TimeRangeState> {
   constructor() {
     super();
   }
@@ -17,8 +16,8 @@ export class TimeEntryStore extends EntityStore<TimeEntryState> {
 @Injectable({
   providedIn: 'root'
 })
-export class TimeEntryQuery extends QueryEntity<TimeEntryState> {
-  constructor(protected store: TimeEntryStore) {
+export class TimeRangeQuery extends QueryEntity<TimeRangeState> {
+  constructor(protected store: TimeRangeStore) {
     super(store);
   }
 }
