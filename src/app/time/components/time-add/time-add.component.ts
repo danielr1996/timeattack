@@ -4,8 +4,9 @@ import {Subject} from "rxjs";
 import {tap} from "rxjs/operators";
 import {TimeRangeStore} from "../../store/time-range-store.service";
 import {v4 as uuid} from 'uuid'
-import { setMinutes, setHours,parse } from 'date-fns/fp'
+import {setMinutes, setHours, parse} from 'date-fns/fp'
 import flow from 'lodash/fp/flow'
+import {addDays, isBefore} from "date-fns";
 
 @Component({
   selector: 'app-time-add',
@@ -28,11 +29,7 @@ export class TimeAddComponent implements OnInit {
     this.save$.pipe(
       tap(() => {
         if (this.form.valid) {
-          this.timeRangeStore.add({
-            id: uuid(),
-            start: this.parseDate(this.form.get('start').value, this.form.get('date').value),
-            end: this.parseDate(this.form.get('end').value, this.form.get('date').value)
-          })
+          this.timeRangeStore.add(this.parseTimeRange(this.form.get('start').value, this.form.get('end').value))
         } else {
           console.error('Form not valid')
         }
@@ -41,7 +38,20 @@ export class TimeAddComponent implements OnInit {
   }
 
   private parseDate(timeString: string, date: Date): Date {
-    let [hour, minute]:number[] = timeString.split(':').map(s=>parseInt(s));
-    return flow(setMinutes(minute),setHours(hour))(date);
+    let [hour, minute]: number[] = timeString.split(':').map(s => parseInt(s));
+    return flow(setMinutes(minute), setHours(hour))(date);
+  }
+
+  private parseTimeRange(startString: string, endString: string) {
+    const start: Date = this.parseDate(startString, this.form.get('date').value);
+    let end: Date = this.parseDate(endString, this.form.get('date').value);
+    if (isBefore(end, start)) {
+      end = addDays(end, 1);
+    }
+    return {
+      id: uuid(),
+      start,
+      end
+    };
   }
 }

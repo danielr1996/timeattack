@@ -13,14 +13,16 @@ import {MatNativeDateModule} from "@angular/material/core";
 import { TimeGroupComponent } from './components/time-group/time-group.component';
 import { TimeRowComponent } from './components/time-row/time-row.component';
 import { TimePipe } from './pipes/time.pipe';
+import { TimeOvertimeComponent } from './components/time-overtime/time-overtime.component';
 
 
 
 @NgModule({
-  declarations: [TimeAddComponent, TimeOverviewComponent, TimeRangePipe, TimeGroupComponent, TimeRowComponent, TimePipe],
+  declarations: [TimeAddComponent, TimeOverviewComponent, TimeRangePipe, TimeGroupComponent, TimeRowComponent, TimePipe, TimeOvertimeComponent],
   exports: [
     TimeAddComponent,
-    TimeOverviewComponent
+    TimeOverviewComponent,
+    TimeOvertimeComponent
   ],
   imports: [
     CommonModule,

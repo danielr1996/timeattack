@@ -19,13 +19,20 @@ export class TimeGroupComponent implements OnInit {
   }
 
   public getTotalHours(): number {
-    return this.timeGroup.timeRanges.map((timeRange => differenceInMinutes(new Date(timeRange.end), new Date(timeRange.start)))).reduce((a, b) => a + b);
+    let totalHours =  this.timeGroup.timeRanges.map((timeRange => differenceInMinutes(new Date(timeRange.end), new Date(timeRange.start)))).reduce((a, b) => a + b);
+    let pause = 0;
+    if(totalHours>=6*60){
+      pause = 30;
+    }else if(totalHours>=9*60){
+      pause = 45;
+    }
+    return totalHours-pause;
   }
 
 
   public getOverTime(): number {
     const defaultTime = differenceInMinutes(new Date(1960, 1, 1, 15, 42, 0, 0), new Date(1960, 1, 1, 8, 0, 0, 0))
-    return this.getTotalHours() - defaultTime-30;
+    return this.getTotalHours() - defaultTime;
   }
 
 
