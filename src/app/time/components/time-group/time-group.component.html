@@ -1,8 +1,0 @@
-<h3 matSubheader>
-  <span>{{timeGroup.date | date:'dd.MM.yyyy'}}</span>
-  <span>{{getTotalHours() | time}}</span>
-  <span class="negative" *ngIf="getOverTime()<0">{{getOverTime()|time}}h</span>
-  <span class="positive" *ngIf="getOverTime() >=0">{{getOverTime()|time}}h</span>
-</h3>
-<mat-divider></mat-divider>
-<app-time-row *ngFor="let timeRange of timeGroup.timeRanges" [timeRange]="timeRange"></app-time-row>
