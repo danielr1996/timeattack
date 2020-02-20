@@ -2,3 +2,14 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+$positive: #2e7d32;
+$negative: #ff3d00;
+
+.positive{
+  color: $positive;
+}
+
+.negative{
+  color: $negative;
+}

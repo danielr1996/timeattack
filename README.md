@@ -11,3 +11,4 @@ Track your daily working time
 * Set personal preferences(daily/weekly) working time, daily pause time, etc
 * Export / Import / Merge Import
 * Device sync (minio)
+* Plan times ahead
