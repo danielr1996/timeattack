@@ -17,3 +17,5 @@ Track your daily working time
 * progressive web app
 * icon
 * add non default pause / negative times
+* Dashboard with current over time / longest day / shortest day, etc.
+* Nicer ux for adding
