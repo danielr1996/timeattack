@@ -6,12 +6,15 @@ import {MatButtonModule} from "@angular/material/button";
 import {ReactiveFormsModule} from "@angular/forms";
 import { TimeOverviewComponent } from './components/time-overview/time-overview.component';
 import {MatListModule} from "@angular/material/list";
-import { TimePipe } from './pipes/time.pipe';
+import {MatIconModule} from "@angular/material/icon";
+import { TimeRangePipe } from './pipes/time-range.pipe';
+import {MatDatepicker, MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
 
 
 
 @NgModule({
-  declarations: [TimeAddComponent, TimeOverviewComponent, TimePipe],
+  declarations: [TimeAddComponent, TimeOverviewComponent, TimeRangePipe],
   exports: [
     TimeAddComponent,
     TimeOverviewComponent
@@ -20,7 +23,10 @@ import { TimePipe } from './pipes/time.pipe';
     CommonModule,
     MatInputModule,
     MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     MatListModule,
+    MatIconModule,
     ReactiveFormsModule,
   ]
 })

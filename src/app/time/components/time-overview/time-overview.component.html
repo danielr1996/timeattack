@@ -1,3 +1,14 @@
 <mat-list role="list">
-  <mat-list-item *ngFor="let timeEntry of timeEntries$ | async" role="listitem">{{timeEntry | time}}</mat-list-item>
+  <mat-divider></mat-divider>
+  <ng-container *ngFor="let group of timeRanges$ | async">
+    <h3 matSubheader>{{group.date | date:'dd.MM.yyyy'}}</h3>
+   <mat-list-item *ngFor="let timeRange of group.timeRanges" role="listitem">
+        <mat-icon>access_time</mat-icon>
+        {{timeRange | timeRange}}
+        <button mat-icon-button aria-label="Delete entry">
+          <mat-icon (click)="delete$.next(timeRange.id)">delete</mat-icon>
+        </button>
+      </mat-list-item>
+    <mat-divider></mat-divider>
+  </ng-container>
 </mat-list>
