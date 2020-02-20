@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {TimeRangeQuery, TimeRangeStore} from "../../store/time-range-store.service";
-import {Observable, Subject} from "rxjs";
+import {Observable} from "rxjs";
 import {TimeRange} from "../../store/time-range";
-import {map, tap} from "rxjs/operators";
-import {compareAsc, compareDesc, parse,} from 'date-fns'
+import {map} from "rxjs/operators";
+import {compareDesc, parse,} from 'date-fns'
 import _ from "lodash";
 import {format} from 'date-fns/fp'
 import flow from 'lodash/fp/flow'
@@ -22,7 +22,7 @@ export class TimeOverviewComponent implements OnInit {
         date: parse(date, 'yyyy-MM-dd', new Date()),
         timeRanges: timeRanges
       }));
-    })
+    }),
   );
 
   constructor(private timeRangeStore: TimeRangeStore, private timeRangeQuery: TimeRangeQuery) {
@@ -30,7 +30,5 @@ export class TimeOverviewComponent implements OnInit {
 
   ngOnInit() {
 
-
   }
-
 }

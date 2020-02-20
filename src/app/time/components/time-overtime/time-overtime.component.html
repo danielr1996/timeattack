@@ -1,0 +1,3 @@
+<!--<span>{{timeRanges$ | async | time}}</span>-->
+<span class="negative" *ngIf="(timeRanges$ | async)<0">{{timeRanges$ | async | time}}</span>
+<span class="positive" *ngIf="(timeRanges$ | async) >=0">{{timeRanges$ | async | time}}</span>

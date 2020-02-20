@@ -1,13 +1,10 @@
 <mat-list-item role="listitem">
-  <mat-icon>access_time</mat-icon>
-  &nbsp;&nbsp;
-  {{timeRange | timeRange}}
-  &nbsp;&nbsp;
-  {{getTotalHours() | time}}
-  &nbsp;&nbsp;
-<!--  <span class="negative" *ngIf="getOverTime()<0">{{getOverTime()|time}}h</span>-->
-<!--  <span class="positive" *ngIf="getOverTime() >=0">{{getOverTime()|time}}h</span>-->
-  <button mat-icon-button aria-label="Delete entry">
-    <mat-icon (click)="delete$.next(timeRange.id)">delete</mat-icon>
-  </button>
+  <div class="flex">
+    <mat-icon>access_time</mat-icon>
+    <span>{{timeRange | timeRange}}</span>
+    <span>{{getTotalHours() | time}}</span>
+    <button mat-icon-button aria-label="Delete entry">
+      <mat-icon (click)="delete$.next(timeRange.id)">delete</mat-icon>
+    </button>
+  </div>
 </mat-list-item>

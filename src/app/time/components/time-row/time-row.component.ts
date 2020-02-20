@@ -27,10 +27,4 @@ export class TimeRowComponent implements OnInit {
   public getTotalHours(): number{
     return differenceInMinutes(new Date(this.timeRange.end),new Date(this.timeRange.start));
   }
-
-
-  public getOverTime(): number{
-    const defaultTime = differenceInMinutes(new Date(1960,1,1,16,12,0,0),new Date(1960,1,1,8,0,0,0))
-    return this.getTotalHours()-defaultTime;
-  }
 }
