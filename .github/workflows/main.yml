@@ -1,0 +1,24 @@
+name: Build
+on:
+  push:
+#    branches:
+#      - master
+
+jobs:
+  build:
+    runs-on: 'ubuntu-latest'
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Build
+        run: |
+          npm ci
+          npm run build:prod -- --base-href=timeattack
+      - name: Deploy
+        uses: 'peaceiris/actions-gh-pages@v3'
+        with:
+          deploy_key: '${{ secrets.ACTIONS_DEPLOY_KEY }}'
+          publish_dir: './dist/timeattack'
