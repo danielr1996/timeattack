@@ -21,3 +21,4 @@ Track your daily working time
 * Nicer ux for adding
 * progressive web app
 * icon
+* add non default pause / negative times
