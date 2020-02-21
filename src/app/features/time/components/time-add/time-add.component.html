@@ -12,5 +12,5 @@
     <mat-label>Ende der Arbeit</mat-label>
     <input [formControlName]="'end'" required matInput placeholder="Ende der Arbeit">
   </mat-form-field>
-  <button (click)="save$.next()" mat-raised-button>Hinzufügen</button>
+  <button [color]="'accent'" (click)="save$.next()" mat-raised-button>Hinzufügen</button>
 </form>
