@@ -12,3 +12,8 @@ Track your daily working time
 * Export / Import / Merge Import
 * Device sync (minio)
 * Plan times ahead
+* Dashboard with current over time / longest day / shortest day, etc.
+* Nicer ux for adding
+* progressive web app
+* icon
+* add non default pause / negative times
