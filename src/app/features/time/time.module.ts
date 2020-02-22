@@ -15,10 +15,12 @@ import {TimeRowComponent} from './components/time-row/time-row.component';
 import {TimePipe} from '../../global/time/pipes/time.pipe';
 import {TimeOvertimeComponent} from './components/time-overtime/time-overtime.component';
 import {TimePatternModule} from "../../global/time/time-pattern.module";
+import { TimeComponent } from './components/time/time.component';
+import {TimeRoutingModule} from "./time-routing.module";
 
 
 @NgModule({
-  declarations: [TimeAddComponent, TimeOverviewComponent, TimeGroupComponent, TimeRowComponent, TimeOvertimeComponent],
+  declarations: [TimeAddComponent, TimeOverviewComponent, TimeGroupComponent, TimeRowComponent, TimeOvertimeComponent, TimeComponent],
   exports: [
     TimeAddComponent,
     TimeOverviewComponent,
@@ -34,6 +36,7 @@ import {TimePatternModule} from "../../global/time/time-pattern.module";
     MatNativeDateModule,
     MatListModule,
     MatIconModule,
+    TimeRoutingModule,
   ]
 })
 export class TimeModule {
