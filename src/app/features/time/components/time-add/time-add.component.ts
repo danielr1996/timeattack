@@ -21,8 +21,8 @@ export class TimeAddComponent implements OnInit {
   constructor(private fb: FormBuilder, private timeRangeStore: TimeRangeStore, private githubService: GithubService) {
     this.form = fb.group({
       date: fb.control(new Date(), [Validators.required]),
-      start: fb.control('', [Validators.required, Validators.pattern(/^[0-2][0-9]:[0-6][0-9]$/)]),
-      end: fb.control('', [Validators.required, Validators.pattern(/^[0-2][0-9]:[0-6][0-9]$/)]),
+      start: fb.control('11:00', [Validators.required, Validators.pattern(/^[0-2][0-9]:[0-6][0-9]$/)]),
+      end: fb.control('12:00', [Validators.required, Validators.pattern(/^[0-2][0-9]:[0-6][0-9]$/)]),
     })
   }
 

@@ -17,6 +17,8 @@ export class TimeCalculationService {
   constructor(private timeRangeStore: TimeRangeStore, private timeRangeQuery: TimeRangeQuery) {
   }
 
+
+
   public groupByDays(): Observable<{ date: Date, timeRanges: TimeRange[] }[]> {
     return this.timeRangeQuery.selectAll().pipe(
       map(timeRanges => {
