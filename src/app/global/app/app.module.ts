@@ -8,12 +8,14 @@ import {TimeModule} from "../../features/time/time.module";
 import {AkitaNgDevtools} from '@datorama/akita-ngdevtools';
 import {environment} from '../../../environments/environment';
 import {AppRoutingModule} from "./app-routing.module";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    HttpClientModule,
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,

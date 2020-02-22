@@ -15,7 +15,7 @@ import {empty} from "rxjs/internal/Observer";
 })
 export class SettingsComponent implements OnInit {
   public form: FormGroup;
-  public save$: Observable<void> = new Subject<void>().pipe(
+  public save$: Subject<void> = new Subject<void>().pipe(
     map(() => this.form.value as UserInfo),
     map(settings => {
       console.log()
@@ -26,12 +26,12 @@ export class SettingsComponent implements OnInit {
         console.error("Form not valid");
       }
     }),
-  );
+  ) as Subject<void>;
 
-  public delete$: Observable<void> = new Subject<void>().pipe(
+  public delete$: Subject<void> = new Subject<void>().pipe(
     tap(() => this.settingsService.delete()),
     tap(() => this.snackBar.open("Settings deleted!", null, {duration: 2000})),
-  );
+  ) as Subject<void>;
 
   public load$: Observable<any> = this.settingsService.getUserInfo()
     .pipe(
@@ -53,7 +53,6 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit() {
     this.load$.subscribe();
-
     this.save$.subscribe();
     this.delete$.subscribe();
   }
