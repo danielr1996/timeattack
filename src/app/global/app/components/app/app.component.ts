@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {GithubService} from "../../../../github.service";
+import {StorageService} from "../../../../storage.service";
 
 @Component({
   selector: 'app-root',
@@ -7,10 +8,10 @@ import {GithubService} from "../../../../github.service";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-  constructor(private githubService: GithubService) {
+  constructor(private storage: StorageService) {
   }
 
   ngOnInit(): void {
-    // this.githubService.load().subscribe();
+    this.storage.load().subscribe()
   }
 }

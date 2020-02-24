@@ -8,6 +8,7 @@ import flow from 'lodash/fp/flow'
 import {addDays, isBefore} from "date-fns";
 import {TimeRangeStore} from "../../store/time-range.store";
 import {GithubService} from "../../../../github.service";
+import {StorageService} from "../../../../storage.service";
 
 @Component({
   selector: 'app-time-add',
@@ -18,7 +19,7 @@ export class TimeAddComponent implements OnInit {
   public save$: Subject<void> = new Subject<void>();
   public form: FormGroup;
 
-  constructor(private fb: FormBuilder, private timeRangeStore: TimeRangeStore, private githubService: GithubService) {
+  constructor(private storageService: StorageService, private fb: FormBuilder, private timeRangeStore: TimeRangeStore, private githubService: GithubService,private storage: StorageService) {
     this.form = fb.group({
       date: fb.control(new Date(), [Validators.required]),
       start: fb.control('11:00', [Validators.required, Validators.pattern(/^[0-2][0-9]:[0-6][0-9]$/)]),
@@ -28,18 +29,18 @@ export class TimeAddComponent implements OnInit {
 
   ngOnInit() {
     this.save$.pipe(
-      // tap(() => {
-      //   if (this.form.valid) {
-      //     this.timeRangeStore.add(this.parseTimeRange(this.form.get('start').value, this.form.get('end').value))
-      //   } else {
-      //     console.error('Form not valid')
-      //   }
-      // }),
+      tap(() => {
+        if (this.form.valid) {
+          this.timeRangeStore.add(this.parseTimeRange(this.form.get('start').value, this.form.get('end').value))
+        } else {
+          console.error('Form not valid')
+        }
+      }),
       mergeMap(() => {
         if (this.form.valid) {
-          this.timeRangeStore.add(this.parseTimeRange(this.form.get('start').value, this.form.get('end').value));
+          return this.storageService.save();
           // return this.githubService.save();
-          return empty();
+          // return empty();
         } else {
           console.error('Form not valid')
         }

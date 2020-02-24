@@ -9,12 +9,18 @@ import {AkitaNgDevtools} from '@datorama/akita-ngdevtools';
 import {environment} from '../../../environments/environment';
 import {AppRoutingModule} from "./app-routing.module";
 import {HttpClientModule} from "@angular/common/http";
+import {AngularFireModule} from "@angular/fire";
+import {AngularFireAuthModule} from "@angular/fire/auth";
+import {AngularFirestoreModule, FirestoreSettingsToken} from "@angular/fire/firestore";
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
     HttpClientModule,
     AppRoutingModule,
     BrowserModule,
@@ -23,7 +29,10 @@ import {HttpClientModule} from "@angular/common/http";
     TimeModule,
     environment.production ? [] : AkitaNgDevtools.forRoot()
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'de-DE'}],
+  providers: [{provide: LOCALE_ID, useValue: 'de-DE'}, {
+    provide: FirestoreSettingsToken,
+    useValue: {timestampsInSnapshots: false}
+  },],
   bootstrap: [AppComponent]
 })
 export class AppModule {
