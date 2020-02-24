@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Subject} from "rxjs";
+import {empty, Subject} from "rxjs";
 import {mergeMap, tap} from "rxjs/operators";
 import {v4 as uuid} from 'uuid'
 import {setMinutes, setHours, parse} from 'date-fns/fp'
@@ -28,14 +28,22 @@ export class TimeAddComponent implements OnInit {
 
   ngOnInit() {
     this.save$.pipe(
-      tap(() => {
+      // tap(() => {
+      //   if (this.form.valid) {
+      //     this.timeRangeStore.add(this.parseTimeRange(this.form.get('start').value, this.form.get('end').value))
+      //   } else {
+      //     console.error('Form not valid')
+      //   }
+      // }),
+      mergeMap(() => {
         if (this.form.valid) {
-          this.timeRangeStore.add(this.parseTimeRange(this.form.get('start').value, this.form.get('end').value))
+          this.timeRangeStore.add(this.parseTimeRange(this.form.get('start').value, this.form.get('end').value));
+          // return this.githubService.save();
+          return empty();
         } else {
           console.error('Form not valid')
         }
       }),
-      mergeMap(()=>this.githubService.save()),
     ).subscribe();
   }
 

@@ -11,6 +11,6 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.githubService.load().subscribe();
+    // this.githubService.load().subscribe();
   }
 }
