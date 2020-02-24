@@ -18,6 +18,7 @@ import {SettingsRoutingModule} from "../../features/settings/settings-routing.mo
         loadChildren: () => import('../../features/settings/settings.module').then(m => m.SettingsModule)
       },
       {path: 'time', loadChildren: () => import('../../features/time/time.module').then(m => m.TimeModule)},
+      {path: 'user',loadChildren: () => import('../../features/user/user.module').then(m=>m.UserModule)},
       {path: '', pathMatch: 'full', redirectTo: 'time'},
       {path: '**', pathMatch: 'full', redirectTo: 'time'},
     ])

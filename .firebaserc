@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "timeattack-dani": {
+      "hosting": {
+        "timeattack": [
+          "timeattack-dani"
+        ]
+      }
+    }
+  }
+}

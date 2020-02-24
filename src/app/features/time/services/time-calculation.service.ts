@@ -22,6 +22,7 @@ export class TimeCalculationService {
   public groupByDays(): Observable<{ date: Date, timeRanges: TimeRange[] }[]> {
     return this.timeRangeQuery.selectAll().pipe(
       map(timeRanges => {
+        console.log(timeRanges)
         timeRanges.sort((a, b) => compareDesc(new Date(a.start), new Date(b.start)));
         return Object.entries(_.groupBy(timeRanges, flow((timerange: TimeRange) => new Date(timerange.start), format("yyyy-MM-dd")))).map(([date, timeRanges]) => ({
           date: parse(date, 'yyyy-MM-dd', new Date()),
@@ -33,7 +34,6 @@ export class TimeCalculationService {
 export const defaultTime = differenceInMinutes(new Date(1960, 1, 1, 15, 42, 0, 0), new Date(1960, 1, 1, 8, 0, 0, 0))
 
 export function getTotalHours(timeRanges: TimeRange[]): number {
-
   //FIXME: load date correctly from store so that new Date(...) isn't necessary
   let totalHours = timeRanges.map((timeRange => differenceInMinutes(new Date(timeRange.end), new Date(timeRange.start)))).reduce((a, b) => a + b);
   let pause = 0;

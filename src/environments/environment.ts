@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: "AIzaSyAjrD2AMWcG4ksTDldTTh7qRH03wawWyjs",
+    authDomain: "timeattack-dani.firebaseapp.com",
+    databaseURL: "https://timeattack-dani.firebaseio.com",
+    projectId: "timeattack-dani",
+    storageBucket: "timeattack-dani.appspot.com",
+    messagingSenderId: "99392613029",
+    appId: "1:99392613029:web:c44ad61eb87959070fbb4c"
+  }
 };
 
 /*

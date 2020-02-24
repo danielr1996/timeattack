@@ -13,7 +13,7 @@ if (environment.production) {
   enableAkitaProdMode();
 }
 
-persistState();
+// persistState();
 
 registerLocaleData(localeDe);
 
