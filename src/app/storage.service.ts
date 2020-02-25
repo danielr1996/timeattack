@@ -22,11 +22,9 @@ export class StorageService {
     // this.user$.subscribe(console.log)
 
     return combineLatest(this.user$, this.timeRanges$).pipe(
-      tap(console.log),
       tap(([user, timeRanges]) => {
         this.fb.collection('timeranges').doc(user.uid).set({timeRanges: timeRanges})
           .then(function (docRef) {
-            console.log("Document written with ID: ", docRef);
           })
           .catch(function (error) {
             console.error("Error adding document: ", error);
@@ -41,7 +39,6 @@ export class StorageService {
       }),
       map(doc => doc.data()),
       pluck('timeRanges'),
-      tap(console.log),
       tap(timeRanges => timeRanges.forEach(timeRange=>this.timeRangeStore.add(timeRange))),
     )
   }

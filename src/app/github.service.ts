@@ -27,7 +27,6 @@ export class GithubService {
         return of(gists[0].id);
       }
     }),
-    tap(console.log),
   );
   private gistToSave$ = this.settings$.pipe(
     mergeMap(settings => this.http.get('https://api.github.com/gists', {headers: new HttpHeaders().set('Authorization', `token ${settings.token}`)})),
@@ -63,7 +62,7 @@ export class GithubService {
   public load(): Observable<any> {
     this.settings$.pipe(
       mergeMap(settings => this.http.get('https://api.github.com/rate_limit', {headers: new HttpHeaders().set('Authorization', `token ${settings.token}`)}))
-    ).subscribe(console.log);
+    ).subscribe();
     return this.gistsToLoad$.pipe(tap(id => console.log('Loading gist with id', id)));
     // return this.settingsService.getUserInfo().pipe(
     //   unpackMaybe(),
