@@ -18,7 +18,6 @@ export class SettingsComponent implements OnInit {
   public save$: Subject<void> = new Subject<void>().pipe(
     map(() => this.form.value as UserInfo),
     map(settings => {
-      console.log()
       if (this.form.valid) {
         this.settingsService.setUserInfo(settings);
         this.snackBar.open("Settings saved!", null, {duration: 2000});
