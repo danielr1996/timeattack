@@ -13,13 +13,15 @@ export class StorageService {
   private user$ = this.authService.getUser();
   private timeRanges$ = this.timeRangeQuery.selectAll();
 
-  constructor(private fb: AngularFirestore, private authService: AuthenticationService, private timeRangeQuery: TimeRangeQuery, private timeRangeStore: TimeRangeStore) {
-
+  constructor(
+    private fb: AngularFirestore,
+    private authService: AuthenticationService,
+    private timeRangeQuery: TimeRangeQuery,
+    private timeRangeStore: TimeRangeStore,
+  ) {
   }
 
   save(): Observable<any> {
-    // this.timeRanges$.subscribe(console.log)
-    // this.user$.subscribe(console.log)
 
     return combineLatest(this.user$, this.timeRanges$).pipe(
       tap(([user, timeRanges]) => {
@@ -39,7 +41,7 @@ export class StorageService {
       }),
       map(doc => doc.data()),
       pluck('timeRanges'),
-      tap(timeRanges => timeRanges.forEach(timeRange=>this.timeRangeStore.add(timeRange))),
+      tap(timeRanges => timeRanges.forEach(timeRange => this.timeRangeStore.add(timeRange))),
     )
   }
 }
