@@ -12,7 +12,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {AngularFireModule} from "@angular/fire";
 import {AngularFireAuthModule} from "@angular/fire/auth";
 import {AngularFirestoreModule, FirestoreSettingsToken} from "@angular/fire/firestore";
-
+import { ServiceWorkerModule } from '@angular/service-worker';
 @NgModule({
   declarations: [
     AppComponent
@@ -27,7 +27,8 @@ import {AngularFirestoreModule, FirestoreSettingsToken} from "@angular/fire/fire
     BrowserAnimationsModule,
     MatToolbarModule,
     TimeModule,
-    environment.production ? [] : AkitaNgDevtools.forRoot()
+    environment.production ? [] : AkitaNgDevtools.forRoot(),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [{provide: LOCALE_ID, useValue: 'de-DE'}, {
     provide: FirestoreSettingsToken,

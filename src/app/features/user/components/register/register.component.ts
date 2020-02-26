@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
   }
 
   tryRegister(value) {
-    this.authService.doRegister(value)
+    this.authService.register(value)
       .then(res => {
         this.errorMessage = "";
         this.successMessage = "Your account has been created";
