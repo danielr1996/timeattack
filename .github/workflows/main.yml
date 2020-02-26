@@ -1,4 +1,4 @@
-name: Build
+name: Pipeline
 on:
   push:
 #    branches:
@@ -6,6 +6,7 @@ on:
 
 jobs:
   build:
+    name: Build
     runs-on: 'ubuntu-latest'
     steps:
       - uses: actions/checkout@v2
@@ -16,12 +17,46 @@ jobs:
       - name: Build
         run: |
           npm ci
-          npm run build:prod -- --base-href=https://danielr1996.github.io/timeattack/
-      - name: Copy index.html to 404.html
-        run: |
-          cp dist/timeattack/index.html dist/timeattack/404.html
-      - name: Deploy
-        uses: 'peaceiris/actions-gh-pages@v3'
+          npm run build:prod
+      - name: Archive Production Artifact
+        uses: actions/upload-artifact@master
         with:
-          deploy_key: '${{ secrets.ACTIONS_DEPLOY_KEY }}'
-          publish_dir: './dist/timeattack'
+          name: dist
+          path: dist/timeattack
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: 'ubuntu-latest'
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Download Artifact
+        uses: actions/download-artifact@master
+        with:
+          name: dist
+          path: dist/timeattack
+#      - name: Change Directory
+#        run: |
+#            cd dist
+#      - name: Firebase Deploy
+#        run: |
+#          npm install -g firebase-tools
+#          npx firebase deploy --token ${{ secrets.FIREBASE_TOKEN }} --project timeattack-dani
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          PROJECT_ID: timeattack-dani
+#      - name: Copy index.html to 404.html
+#        run: |
+#          cp dist/timeattack/index.html dist/timeattack/404.html
+#      - name: Deploy
+#        uses: 'peaceiris/actions-gh-pages@v3'
+#        with:
+#          deploy_key: '${{ secrets.ACTIONS_DEPLOY_KEY }}'
+#          publish_dir: './dist/timeattack'
