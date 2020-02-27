@@ -6,7 +6,7 @@ import {map} from "rxjs/operators";
 import {format} from "date-fns/fp";
 import {Observable} from "rxjs";
 import flow from 'lodash/fp/flow'
-import _ from "lodash";
+import {groupBy} from "lodash";
 import {TimeRangeStore} from "../store/time-range.store";
 
 @Injectable({
@@ -22,7 +22,7 @@ export class TimeCalculationService {
     return this.timeRangeQuery.selectAll().pipe(
       map(timeRanges => {
         timeRanges.sort((a, b) => compareDesc(new Date(a.start), new Date(b.start)));
-        return Object.entries(_.groupBy(timeRanges, flow((timerange: TimeRange) => new Date(timerange.start), format("yyyy-MM-dd")))).map(([date, timeRanges]) => ({
+        return Object.entries(groupBy(timeRanges, flow((timerange: TimeRange) => new Date(timerange.start), format("yyyy-MM-dd")))).map(([date, timeRanges]) => ({
           date: parse(date, 'yyyy-MM-dd', new Date()),
           timeRanges: timeRanges
         })) as { date: Date, timeRanges: TimeRange[] }[];

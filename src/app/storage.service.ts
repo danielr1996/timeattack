@@ -5,12 +5,15 @@ import {map, mergeMap, pluck, tap} from "rxjs/operators";
 import {TimeRangeQuery} from "./features/time/store/time-range.query";
 import {combineLatest, Observable, of} from "rxjs";
 import {TimeRangeStore} from "./features/time/store/time-range.store";
+import {User} from "firebase";
+import {Maybe} from "./util/Maybe";
+import {unpackMaybe} from "./util/rxjs/unpackMaybe";
 
 @Injectable({
   providedIn: 'root'
 })
 export class StorageService {
-  private user$ = this.authService.getUser();
+  private user$: Observable<User> = this.authService.getUser().pipe(unpackMaybe());
   private timeRanges$ = this.timeRangeQuery.selectAll();
 
   constructor(
