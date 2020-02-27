@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {TimeRange} from "../../store/time-range";
 import {differenceInMinutes} from "date-fns";
 import {Observable, of, Subject} from "rxjs";
-import {tap} from "rxjs/operators";
-import {TimeRangeStore} from "../../store/time-range.store";
+import {mergeMap} from "rxjs/operators";
+import {TimeRangeService} from "src/app/features/time/services/time-range.service";
+import {TimeRange} from "../../store/time-range";
 
 @Component({
   selector: 'app-time-row',
@@ -13,14 +13,13 @@ import {TimeRangeStore} from "../../store/time-range.store";
 export class TimeRowComponent implements OnInit {
   @Input() timeRange: TimeRange;
   public delete$: Subject<string> = new Subject<string>();
-  // FIXME: load date correctly from store so that new Date(...) isn't necessary
   public totalHours$: Observable<number>;
 
-  constructor(private timeRangeStore: TimeRangeStore) {
+  constructor(private timeRangeService: TimeRangeService) {
   }
 
   ngOnInit() {
-    this.delete$.pipe(tap(id => this.timeRangeStore.remove(id))).subscribe();
+    this.delete$.pipe(mergeMap(id => this.timeRangeService.remove(id))).subscribe();
     this.totalHours$ = of(differenceInMinutes(new Date(this.timeRange.end), new Date(this.timeRange.start)));
   }
 }

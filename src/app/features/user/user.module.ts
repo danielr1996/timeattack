@@ -7,15 +7,19 @@ import {AngularFireModule} from "@angular/fire";
 import {environment} from "../../../environments/environment";
 import {AngularFireAuthModule} from "@angular/fire/auth";
 import { LoginComponent } from './components/login/login.component';
+import { UserNameComponent } from './components/user-name/user-name.component';
 
 
 
 @NgModule({
-  declarations: [RegisterComponent, LoginComponent],
-  imports: [
-    CommonModule,
-    UserRoutingModule,
-    ReactiveFormsModule,
-  ]
+    declarations: [RegisterComponent, LoginComponent, UserNameComponent],
+    exports: [
+        UserNameComponent
+    ],
+    imports: [
+        CommonModule,
+        UserRoutingModule,
+        ReactiveFormsModule,
+    ]
 })
 export class UserModule { }

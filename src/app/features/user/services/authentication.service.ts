@@ -1,57 +1,40 @@
 import {Injectable} from '@angular/core';
 import {AngularFireAuth} from "@angular/fire/auth";
-import {BehaviorSubject, Observable, ReplaySubject, Subject} from "rxjs";
 import {User} from "firebase";
-import {map, tap} from "rxjs/operators";
-import {Maybe, mayBeOfNullable} from "../../../util/Maybe";
-import {unpackMaybe} from "../../../util/rxjs/unpackMaybe";
+import {from, Observable, ReplaySubject, Subject} from "rxjs";
+import {map} from "rxjs/operators";
+import {Maybe, mayBeOfNullable} from "src/app/util/Maybe";
+import UserCredential = firebase.auth.UserCredential;
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private user$$: Subject<User> = new ReplaySubject<User>();
-  private user$: Observable<Maybe<User>> = this.user$$.pipe(map(mayBeOfNullable));
 
   constructor(private firebase: AngularFireAuth) {
-    this.firebase.auth.onAuthStateChanged(user => this.user$$.next(user))
   }
 
-  // FIXME return Promise as Observable
-  register(value) {
-    return new Promise<any>((resolve, reject) => {
-      this.firebase.auth.setPersistence('local')
-        .then(() => this.firebase.auth.createUserWithEmailAndPassword(value.email, value.password))
-        .then(res => {
-          resolve(res);
-        }, err => reject(err))
-    })
+  register(value): Observable<UserCredential> {
+    return from(this.firebase.auth.createUserWithEmailAndPassword(value.email, value.password));
+
   }
 
-  // FIXME return Promise as Observable
-  login(value) {
-    return new Promise<any>((resolve, reject) => {
-      this.firebase.auth.setPersistence('local')
-        .then(() => this.firebase.auth.signInWithEmailAndPassword(value.email, value.password))
-        .then(res => {
-          this.user$$.next(this.firebase.auth.currentUser)
-          resolve(res);
-        }, err => reject(err))
-    })
+  login(value): Observable<UserCredential> {
+    return from(this.firebase.auth.signInWithEmailAndPassword(value.email, value.password));
+
   }
 
-  logout() {
-    return new Promise<any>((resolve, reject) => {
-      this.firebase.auth.signOut()
-        .then(res => {
-          console.log(this.firebase.auth.currentUser);
-          this.user$$.next(this.firebase.auth.currentUser);
-          resolve(res);
-        }, err => reject(err))
-    })
+  logout(): Observable<void> {
+    return from(this.firebase.auth.signOut())
   }
 
   getUser(): Observable<Maybe<User>> {
-    return this.user$;
+    return this.firebase.user.pipe(map(mayBeOfNullable))
+  }
+
+  isLoggedIn(): Observable<boolean> {
+    return this.getUser().pipe(
+      map(user => user.hasValue)
+    );
   }
 }

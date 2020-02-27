@@ -1,7 +1,8 @@
 <mat-toolbar [color]="'primary'">
   <h1 [routerLink]="'time'">Time Attack</h1>
   <app-time-overtime style="margin-left: 15px"></app-time-overtime>
-  <span [routerLink]="'settings'">Settings</span>
-  <span [routerLink]="['user','login']">Login</span>
+  <span *ngIf="!(loggedIn$ | async)" [routerLink]="['user','login']">Login</span>
+  <span [routerLink]="['user','register']">Register</span>
+  <app-user-name></app-user-name>
 </mat-toolbar>
 <router-outlet></router-outlet>
