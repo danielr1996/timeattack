@@ -1,16 +1,16 @@
 <form [formGroup]="form">
   <mat-form-field appearance="outline">
-    <input [formControlName]="'date'" required matInput [matDatepicker]="myDatepicker">
+    <input aria-label="Datum" [formControlName]="'date'" required matInput [matDatepicker]="myDatepicker">
     <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
     <mat-datepicker #myDatepicker></mat-datepicker>
   </mat-form-field>
   <mat-form-field appearance="outline">
-    <mat-label>Start der Arbeit</mat-label>
-    <input [formControlName]="'start'" required matInput placeholder="Start der Arbeit">
+    <mat-label id="lbl-start">Start der Arbeit</mat-label>
+    <input aria-labelledby="lbl-start" [formControlName]="'start'" required matInput placeholder="Start der Arbeit">
   </mat-form-field>
   <mat-form-field appearance="outline">
-    <mat-label>Ende der Arbeit</mat-label>
-    <input [formControlName]="'end'" required matInput placeholder="Ende der Arbeit">
+    <mat-label id="lbl-end">Ende der Arbeit</mat-label>
+    <input aria-labelledby="lbl-end" [formControlName]="'end'" required matInput placeholder="Ende der Arbeit">
   </mat-form-field>
   <button [color]="'accent'" (click)="save$.next()" mat-raised-button>Hinzufügen</button>
 </form>

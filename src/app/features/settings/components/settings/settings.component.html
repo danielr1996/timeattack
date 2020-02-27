@@ -1,12 +1,12 @@
 <p>Verbinde deinen Github Account um deine Daten zu synchronisieren.</p>
 <form [formGroup]="form">
   <mat-form-field appearance="outline">
-    <mat-label>Benutzername</mat-label>
-    <input [formControlName]="'username'" matInput required placeholder="Benutzername">
+    <mat-label id="lbl-benutzername">Benutzername</mat-label>
+    <input aria-labelledby="lbl-benutzername" [formControlName]="'username'" matInput required placeholder="Benutzername">
   </mat-form-field>
   <mat-form-field appearance="outline">
-    <mat-label>Personal Access Token</mat-label>
-    <input [formControlName]="'token'" matInput required placeholder="Personal Access Token">
+    <mat-label id="lbl-pat">Personal Access Token</mat-label>
+    <input aria-labelledby="lbl-pat" [formControlName]="'token'" matInput required placeholder="Personal Access Token">
   </mat-form-field>
   <button [color]="'accent'" (click)="save$.next()" mat-raised-button>Speichern</button>
   <button [color]="'primary'" (click)="delete$.next()" mat-raised-button>Löschen</button>
