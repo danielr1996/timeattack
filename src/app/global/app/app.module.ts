@@ -1,5 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {LOCALE_ID, NgModule} from '@angular/core';
+import {UserModule} from "src/app/features/user/user.module";
 
 import {AppComponent} from './components/app/app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -12,7 +13,8 @@ import {HttpClientModule} from "@angular/common/http";
 import {AngularFireModule} from "@angular/fire";
 import {AngularFireAuthModule} from "@angular/fire/auth";
 import {AngularFirestoreModule, FirestoreSettingsToken} from "@angular/fire/firestore";
-import { ServiceWorkerModule } from '@angular/service-worker';
+import {ServiceWorkerModule} from '@angular/service-worker';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -23,17 +25,17 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     AngularFirestoreModule,
     HttpClientModule,
     AppRoutingModule,
+    UserModule,
     BrowserModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     TimeModule,
     environment.production ? [] : AkitaNgDevtools.forRoot(),
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'de-DE'}, {
-    provide: FirestoreSettingsToken,
-    useValue: {timestampsInSnapshots: false}
-  },],
+  providers: [
+    {provide: LOCALE_ID, useValue: 'de-DE'},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {throwError} from "rxjs";
+import {catchError, tap} from "rxjs/operators";
 import {AuthenticationService} from "../../services/authentication.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
 
@@ -21,15 +23,19 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  tryRegister(value) {
+  register(value) {
     this.authService.register(value)
-      .then(res => {
-        this.errorMessage = "";
-        this.successMessage = "Your account has been created";
-      }, err => {
-        console.log(err);
-        this.errorMessage = err.message;
-        this.successMessage = "";
-      })
+      .pipe(
+        tap(() => {
+          this.errorMessage = "";
+          this.successMessage = "Successfully registerd";
+        }),
+        catchError(err => {
+          this.errorMessage = err.message;
+          this.successMessage = "";
+          return throwError(err);
+        })
+      )
+      .subscribe();
   }
 }

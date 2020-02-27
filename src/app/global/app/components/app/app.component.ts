@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {GithubService} from "../../../../github.service";
-import {StorageService} from "../../../../storage.service";
+import {Observable} from "rxjs";
+import {StorageService} from "src/app/features/storage/services/storage.service";
+import {AuthenticationService} from "src/app/features/user/services/authentication.service";
 
 @Component({
   selector: 'app-root',
@@ -8,10 +9,11 @@ import {StorageService} from "../../../../storage.service";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-  constructor(private storage: StorageService) {
+  loggedIn$ : Observable<boolean> = this.authService.isLoggedIn();
+  constructor(private storage: StorageService, private authService: AuthenticationService) {
   }
 
   ngOnInit(): void {
-    this.storage.load().subscribe()
+    // this.storage.load().subscribe()
   }
 }
