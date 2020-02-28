@@ -1,4 +1,4 @@
-<div class="mat-app-background">
+<div>
   <mat-toolbar [color]="'primary'">
     <a [routerLink]="'time'"><img height="40px" width="40px" src="assets/icons/icon-48x48.png"></a>
     <app-time-overtime></app-time-overtime>
@@ -26,7 +26,7 @@
             mat-icon-button
             aria-label="Toggle Darkmode">
       <mat-icon *ngIf="theme === 'theme-dark'">brightness_low</mat-icon>
-      <mat-icon *ngIf="theme === ''">brightness_high</mat-icon>
+      <mat-icon *ngIf="theme === 'theme-light'">brightness_high</mat-icon>
     </button>
   </mat-toolbar>
   <router-outlet></router-outlet>

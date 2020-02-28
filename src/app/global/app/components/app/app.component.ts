@@ -10,17 +10,13 @@ import {Overlay, OverlayContainer} from "@angular/cdk/overlay";
 })
 export class AppComponent implements OnInit {
   loggedIn$: Observable<boolean> = this.authService.isLoggedIn();
-  @HostBinding('class') theme: string;
-
+  theme = 'theme-light';
   constructor(
     private authService: AuthenticationService,
-    private overlayContainer: OverlayContainer,
   ) {
   }
 
   ngOnInit(): void {
-    this.theme = 'theme-dark';
-    this.overlayContainer.getContainerElement().classList.add(this.theme)
   }
 
   logout() {
@@ -28,10 +24,18 @@ export class AppComponent implements OnInit {
   }
 
   toggleDarkMode() {
-    if (this.theme === 'theme-dark') {
-      this.theme='';
+    let link:any = document.querySelector('#theme');
+    let href = link.href;
+
+    if(href.endsWith('assets/theme-dark.css')){
+      this.theme='theme-light';
+      link.href='assets/theme-light.css';
+    }else if(href.endsWith('assets/theme-light.css')){
+      this.theme='theme-dark';
+      link.href='assets/theme-dark.css';
     }else{
-      this.theme= 'theme-dark';
+      this.theme='theme-light';
+      link.href='assets/theme-light.css';
     }
   }
 }
