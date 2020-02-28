@@ -27,15 +27,15 @@ export class AppComponent implements OnInit {
     let link:any = document.querySelector('#theme');
     let href = link.href;
 
-    if(href.endsWith('assets/theme-dark.css')){
+    if(href.endsWith('assets/themes/theme-dark.css')){
       this.theme='theme-light';
-      link.href='assets/theme-light.css';
-    }else if(href.endsWith('assets/theme-light.css')){
+      link.href='assets/themes/theme-light.css';
+    }else if(href.endsWith('assets/themes/theme-light.css')){
       this.theme='theme-dark';
-      link.href='assets/theme-dark.css';
+      link.href='assets/themes/theme-dark.css';
     }else{
       this.theme='theme-light';
-      link.href='assets/theme-light.css';
+      link.href='assets/themes/theme-light.css';
     }
   }
 }
