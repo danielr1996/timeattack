@@ -17,7 +17,7 @@ jobs:
       - name: Build
         run: |
           npm ci
-          npm run build:prod
+          npx gulp build
       - name: Archive Production Artifact
         uses: actions/upload-artifact@master
         with:

@@ -22,3 +22,16 @@ Track your daily working time
 * progressive web app
 * icon
 * add non default pause / negative times
+
+
+## Run locally
+``` 
+gulp theme # If themes in src/themes have changed
+
+ng serve
+```
+
+## Build
+```
+gulp build
+```

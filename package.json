@@ -5,7 +5,6 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:prod": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -45,6 +44,9 @@
     "codelyzer": "^5.1.2",
     "firebase-tools": "^7.12.0",
     "fuzzy": "^0.1.3",
+    "gulp": "^4.0.2",
+    "gulp-sass": "^4.0.2",
+    "gulp-shell": "^0.8.0",
     "inquirer": "^6.2.2",
     "inquirer-autocomplete-prompt": "^1.0.1",
     "jasmine-core": "~3.4.0",
@@ -54,9 +56,11 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
+    "node-sass-tilde-importer": "^1.0.2",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
-    "typescript": "~3.7.5"
+    "typescript": "~3.7.5",
+    "webpack": "^4.41.6"
   }
 }
