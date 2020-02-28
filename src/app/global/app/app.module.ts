@@ -12,11 +12,12 @@ import {AppRoutingModule} from "./app-routing.module";
 import {HttpClientModule} from "@angular/common/http";
 import {AngularFireModule} from "@angular/fire";
 import {AngularFireAuthModule} from "@angular/fire/auth";
-import {AngularFirestoreModule, FirestoreSettingsToken} from "@angular/fire/firestore";
+import {AngularFirestoreModule} from "@angular/fire/firestore";
 import {ServiceWorkerModule} from '@angular/service-worker';
-import {MatIcon, MatIconModule} from "@angular/material/icon";
+import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {OverlayModule} from "@angular/cdk/overlay";
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     BrowserModule,
     BrowserAnimationsModule,
     MatToolbarModule,
+    OverlayModule,
     MatIconModule,
     MatButtonModule,
     TimeModule,

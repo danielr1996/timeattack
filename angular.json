@@ -24,7 +24,6 @@
               "src/robots.txt"
             ],
             "styles": [
-              "src/theme.scss",
               "src/styles.scss"
             ],
             "scripts": []
