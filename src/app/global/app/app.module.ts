@@ -34,7 +34,6 @@ import {OverlayModule} from "@angular/cdk/overlay";
     BrowserModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    OverlayModule,
     MatIconModule,
     MatButtonModule,
     TimeModule,
