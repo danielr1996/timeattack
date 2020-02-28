@@ -1,7 +1,7 @@
 <mat-toolbar [color]="'primary'">
   <a [routerLink]="'time'"><img height="40px" width="40px" src="assets/icons/icon-48x48.png"></a>
     <app-time-overtime></app-time-overtime>
-  <app-user-name></app-user-name>
+<!--  <app-user-name></app-user-name>-->
   <button matTooltip="Logout" *ngIf="(loggedIn$ | async)" mat-icon-button (click)="logout()" aria-label="Logout">
     <mat-icon>lock</mat-icon>
   </button>
@@ -10,6 +10,13 @@
   </button>
   <button matTooltip="Register" *ngIf="!(loggedIn$ | async)" mat-icon-button [routerLink]="['user','register']" aria-label="Register">
     <mat-icon>vpn_key</mat-icon>
+  </button>
+
+  <button matTooltip="Register" *ngIf="!(loggedIn$ | async)" mat-icon-button [routerLink]="['user','register']" aria-label="Register">
+    <mat-icon>airplanemode_active</mat-icon>
+  </button>
+  <button matTooltip="Register" *ngIf="!(loggedIn$ | async)" mat-icon-button [routerLink]="['user','register']" aria-label="Register">
+    <mat-icon>brightness_high</mat-icon>
   </button>
 </mat-toolbar>
 <router-outlet></router-outlet>
