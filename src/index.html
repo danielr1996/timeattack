@@ -5,6 +5,11 @@
   <title>Timeattack</title>
   <base href="/">
   <link id="theme" href="assets/themes/theme-light.css" rel="stylesheet ">
+  <script>
+    const theme = localStorage.getItem('timeattack_theme') || 'light';
+    let link = document.querySelector('#theme');
+    link.href = `assets/themes/theme-${theme}.css`;
+  </script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#1976d2">

@@ -13,11 +13,11 @@ import {catchError, map, tap} from "rxjs/operators";
 export class LoginComponent implements OnInit {
   public errorMessage: string;
   public successMessage: string;
-  public registerForm: FormGroup;
+  public loginForm: FormGroup;
 
 
   constructor(private authService: AuthenticationService, private fb: FormBuilder) {
-    this.registerForm = fb.group({
+    this.loginForm = fb.group({
       email: '',
       password: '',
     })

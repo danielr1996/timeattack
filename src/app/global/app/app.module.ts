@@ -1,3 +1,4 @@
+import {MatCardModule} from "@angular/material/card";
 import {BrowserModule} from '@angular/platform-browser';
 import {LOCALE_ID, NgModule} from '@angular/core';
 import {UserModule} from "src/app/features/user/user.module";
@@ -18,10 +19,14 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {OverlayModule} from "@angular/cdk/overlay";
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { ThemeSwitcherComponent } from 'src/app/global/app/components/theme-switcher/theme-switcher.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ToolbarComponent,
+    ThemeSwitcherComponent
   ],
   imports: [
     MatTooltipModule,
@@ -30,6 +35,7 @@ import {OverlayModule} from "@angular/cdk/overlay";
     AngularFireAuthModule,
     AngularFirestoreModule,
     AppRoutingModule,
+    MatCardModule,
     UserModule,
     BrowserModule,
     BrowserAnimationsModule,
