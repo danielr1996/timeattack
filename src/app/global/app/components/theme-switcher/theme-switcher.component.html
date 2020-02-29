@@ -1,0 +1,6 @@
+<button (click)="toggleDarkMode()" matTooltip="Toggle Darkmode"
+        mat-icon-button
+        aria-label="Toggle Darkmode">
+  <mat-icon *ngIf="theme">brightness_4</mat-icon>
+  <mat-icon *ngIf="!theme">brightness_5</mat-icon>
+</button>
