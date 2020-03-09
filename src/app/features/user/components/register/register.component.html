@@ -1,16 +1,29 @@
-<form [formGroup]="registerForm">
-  <div class="form-group">
-    <label>Email address
-      <input type="email" formControlName="email" class="form-control" required>
-    </label>
-  </div>
-  <div class="form-group">
-    <label>Password
-      <input type="password" class="form-control" formControlName="password" required>
-    </label>
-
-    <label class="error">{{errorMessage}}</label>
-    <label class="success">{{successMessage}}</label>
-  </div>
-  <button type="submit" (click)="register(registerForm.value)" class="btn btn-default">Register</button>
-</form>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Registrieren</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="registerForm">
+      <mat-form-field appearance="outline">
+        <mat-label>E-Mail Adresse</mat-label>
+        <input matInput placeholder="E-Mail Adresse" type="email" formControlName="email" required>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Passwort</mat-label>
+        <input matInput placeholder="Passwort" type="password" formControlName="password" required>
+      </mat-form-field>
+      <br>
+      <label class="error">{{errorMessage}}</label>
+      <label class="success">{{successMessage}}</label>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button color="accent" mat-raised-button type="submit" (click)="register(registerForm.value)">
+      Registrieren
+    </button>
+    <button mat-stroked-button [routerLink]="['/','user','login']">
+      Einloggen
+    </button>
+  </mat-card-actions>
+</mat-card>

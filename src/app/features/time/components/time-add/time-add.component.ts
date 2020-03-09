@@ -3,11 +3,10 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {addDays, isBefore} from "date-fns";
 import {setHours, setMinutes} from 'date-fns/fp'
 import flow from 'lodash/fp/flow'
-import {empty, of, Subject} from "rxjs";
-import {mergeMap, tap} from "rxjs/operators";
+import {empty, Subject} from "rxjs";
+import {mergeMap} from "rxjs/operators";
 import {TimeRangeService} from "src/app/features/time/services/time-range.service";
 import {TimeRangeStore} from "src/app/features/time/store/time-range.store";
-import {StorageService} from "src/app/features/storage/services/storage.service";
 import {v4 as uuid} from 'uuid'
 
 @Component({
@@ -20,16 +19,14 @@ export class TimeAddComponent implements OnInit {
   public form: FormGroup;
 
   constructor(
-    private storageService: StorageService,
     private fb: FormBuilder,
     private timeRangeStore: TimeRangeStore,
-    private storage: StorageService,
     private timeRangeService: TimeRangeService,
   ) {
     this.form = fb.group({
       date: fb.control(new Date(), [Validators.required]),
-      start: fb.control('11:00', [Validators.required, Validators.pattern(/^[0-2][0-9]:[0-6][0-9]$/)]),
-      end: fb.control('12:00', [Validators.required, Validators.pattern(/^[0-2][0-9]:[0-6][0-9]$/)]),
+      start: fb.control('09:20', [Validators.required, Validators.pattern(/^[0-2][0-9]:[0-6][0-9]$/)]),
+      end: fb.control('17:32', [Validators.required, Validators.pattern(/^[0-2][0-9]:[0-6][0-9]$/)]),
     })
   }
 

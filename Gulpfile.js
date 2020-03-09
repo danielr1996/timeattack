@@ -7,7 +7,6 @@ gulp.task('themes', function () {
   return gulp.src('src/themes/*.scss')
     .pipe(sass({importer: tilde}))
     .pipe(gulp.dest('src/assets/themes'))
-    .pipe(shell(['ng build']))
 });
 
 gulp.task('ng', shell.task('npx ng build --prod'));
