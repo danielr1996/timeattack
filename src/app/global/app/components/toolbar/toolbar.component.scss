@@ -1,5 +1,7 @@
+@import '../../../../../gutter';
+
 mat-toolbar > *{
-  margin-right: 15px;
+  margin-right: $md;
 }
 
 img{

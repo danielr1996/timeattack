@@ -3,6 +3,7 @@
     <mat-icon>access_time</mat-icon>
     <span>{{timeRange | timeRange}}</span>
     <span>{{totalHours$ | async | time}}</span>
+    <span>{{timeRange.info}}</span>
     <button mat-icon-button aria-label="Delete entry">
       <mat-icon (click)="delete$.next(timeRange.id)">delete</mat-icon>
     </button>

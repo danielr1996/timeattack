@@ -13,4 +13,5 @@
     <input aria-labelledby="lbl-end" [formControlName]="'end'" required matInput placeholder="Ende der Arbeit">
   </mat-form-field>
   <button [color]="'accent'" (click)="save$.next()" mat-raised-button>Hinzufügen</button>
+  <button [color]="'warn'" (click)="krank$.next()" mat-raised-button>Krankheit</button>
 </form>
