@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
-import {TimeRange} from "../store/time-range";
+import {TimeRange} from "../store/time-range/time-range";
 import {compareDesc, differenceInMinutes, parse} from "date-fns";
-import {TimeRangeQuery} from "../store/time-range.query";
+import {TimeRangeQuery} from "../store/time-range/time-range.query";
 import {map} from "rxjs/operators";
 import {format} from "date-fns/fp";
 import {Observable} from "rxjs";
 import flow from 'lodash/fp/flow'
 import {groupBy} from "lodash";
-import {TimeRangeStore} from "../store/time-range.store";
+import {TimeRangeStore} from "../store/time-range/time-range.store";
 
 @Injectable({
   providedIn: 'root'

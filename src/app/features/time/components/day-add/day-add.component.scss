@@ -1,0 +1,5 @@
+@import "src/gutter";
+
+form > *:not(:last-child) {
+  margin-right: $md;
+}

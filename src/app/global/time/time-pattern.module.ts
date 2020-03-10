@@ -1,14 +1,14 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {TimeDisplayComponent} from './components/time-display/time-display.component';
-import {TimePipe} from "./pipes/time.pipe";
+import {DurationPipe} from "src/app/global/time/pipes/duration.pipe";
 import {TimeRangePipe} from "./pipes/time-range.pipe";
 
 
 @NgModule({
   declarations: [
     TimeDisplayComponent,
-    TimePipe,
+    DurationPipe,
     TimeRangePipe,
   ],
   imports: [
@@ -16,7 +16,7 @@ import {TimeRangePipe} from "./pipes/time-range.pipe";
   ],
   exports: [
     TimeDisplayComponent,
-    TimePipe,
+    DurationPipe,
     TimeRangePipe,
   ]
 })

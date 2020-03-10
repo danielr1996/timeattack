@@ -1,15 +1,16 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore} from "@angular/fire/firestore";
 import {User} from "firebase";
-import {combineLatest, from, Observable, of} from "rxjs";
+import {from, Observable, of} from "rxjs";
 import {map, mergeMap, pluck, tap} from "rxjs/operators";
-import {TimeRange} from "src/app/features/time/store/time-range";
-import {TimeRangeQuery} from "src/app/features/time/store/time-range.query";
-import {TimeRangeStore} from "src/app/features/time/store/time-range.store";
+import {TimeRange} from "src/app/features/time/store/time-range/time-range";
+import {TimeRangeStore} from "src/app/features/time/store/time-range/time-range.store";
 import {AuthenticationService} from "src/app/features/user/services/authentication.service";
-import {mayBeOfNullable} from "src/app/util/Maybe";
-import {unpackMaybe} from "src/app/util/rxjs/unpackMaybe";
+import {unpackMaybe} from "src/app/lib/fp/rxjs/unpackMaybe";
 
+/**
+ * @deprecated
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -23,7 +24,7 @@ export class TimeRangeService {
     private authService: AuthenticationService,
     private timeRangeStore: TimeRangeStore,
   ) {
-    this.fb.firestore.enablePersistence().catch(function(err) {
+    this.fb.firestore.enablePersistence().catch(function (err) {
       if (err.code == 'failed-precondition') {
         console.log('failed-precondition')
       } else if (err.code == 'unimplemented') {

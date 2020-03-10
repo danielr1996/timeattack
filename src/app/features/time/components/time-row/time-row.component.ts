@@ -1,25 +1,28 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {differenceInMinutes} from "date-fns";
-import {Observable, of, Subject} from "rxjs";
-import {mergeMap} from "rxjs/operators";
-import {TimeRangeService} from "src/app/features/time/services/time-range.service";
-import {TimeRange} from "../../store/time-range";
+import {TimeEntry} from "../../store/time-entry/time-entry";
 
 @Component({
   selector: 'app-time-row',
-  templateUrl: './time-row.component.html',
+  template: `
+    <mat-list-item role="listitem">
+      <div class="flex">
+        <mat-icon>access_time</mat-icon>
+<!--        <span>{{timeRange | timeRange}}</span>-->
+<!--        FIXME: in Pipe auslagern-->
+        {{timeEntry.start.hour}}:{{timeEntry.start.minute}} - {{timeEntry.end.hour}}:{{timeEntry.end.minute}}
+<!--        <span>{{totalHours$ | async | time}}</span>-->
+        <app-time-delete [timeEntry]="timeEntry"></app-time-delete>
+      </div>
+    </mat-list-item>
+  `,
   styleUrls: ['./time-row.component.scss']
 })
 export class TimeRowComponent implements OnInit {
-  @Input() timeRange: TimeRange;
-  public delete$: Subject<string> = new Subject<string>();
-  public totalHours$: Observable<number>;
+  @Input() timeEntry: TimeEntry;
 
-  constructor(private timeRangeService: TimeRangeService) {
+  constructor() { }
+
+  ngOnInit(): void {
   }
 
-  ngOnInit() {
-    this.delete$.pipe(mergeMap(id => this.timeRangeService.remove(id))).subscribe();
-    this.totalHours$ = of(differenceInMinutes(new Date(this.timeRange.end), new Date(this.timeRange.start)));
-  }
 }

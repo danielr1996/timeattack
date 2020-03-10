@@ -6,7 +6,28 @@ import {AuthenticationService} from "src/app/features/user/services/authenticati
 
 @Component({
   selector: 'app-toolbar',
-  templateUrl: './toolbar.component.html',
+  template: `
+    <mat-toolbar [color]="'primary'">
+      <a [routerLink]="'time'"><img height="40px" width="40px" src="assets/icons/icon-48x48.png"></a>
+<!--      <app-time-overtime></app-time-overtime>-->
+      <button matTooltip="Logout" *ngIf="(loggedIn$ |async)" mat-icon-button (click)="logout()" aria-label="Logout">
+        <mat-icon>lock</mat-icon>
+      </button>
+      <button matTooltip="Benutzer" mat-icon-button [routerLink]="['/','user']"
+              aria-label="Benutzer">
+        <mat-icon>person</mat-icon>
+      </button>
+      <button
+        *ngIf="false"
+        matTooltip="Register"
+        mat-icon-button
+        aria-label="Flugmodus">
+        <mat-icon>airplanemode_active</mat-icon>
+      </button>
+      <app-theme-switcher></app-theme-switcher>
+    </mat-toolbar>
+
+  `,
   styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent implements OnInit {

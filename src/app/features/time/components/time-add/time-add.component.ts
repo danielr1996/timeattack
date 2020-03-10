@@ -1,64 +1,37 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {addDays, isBefore} from "date-fns";
-import {setHours, setMinutes} from 'date-fns/fp'
-import flow from 'lodash/fp/flow'
-import {empty, Subject} from "rxjs";
-import {mergeMap} from "rxjs/operators";
-import {TimeRangeService} from "src/app/features/time/services/time-range.service";
-import {TimeRangeStore} from "src/app/features/time/store/time-range.store";
-import {v4 as uuid} from 'uuid'
+import {Component, Input, OnInit} from '@angular/core';
+import {Subject} from "rxjs";
+import {map, mergeMap} from "rxjs/operators";
+import {v4 as uuid} from "uuid";
+import {TimeEntry} from "src/app/features/time/store/time-entry/time-entry";
+import {TimeEntryService} from "src/app/features/time/services/time-entry.service";
 
 @Component({
   selector: 'app-time-add',
-  templateUrl: './time-add.component.html',
+  template: `
+    <button mat-icon-button aria-label="Add Time Entry">
+      <mat-icon (click)="add$.next()">add</mat-icon>
+    </button>
+  `,
   styleUrls: ['./time-add.component.scss']
 })
 export class TimeAddComponent implements OnInit {
-  public save$: Subject<void> = new Subject<void>();
-  public form: FormGroup;
+  @Input() dateEntryId: string;
+  public add$ = new Subject().pipe(
+    map(() => ({
+      id: uuid(),
+      start: {hour: 7, minute: 0, second: 0, nano: 0},
+      end: {hour: 15, minute: 12, second: 0, nano: 0},
+      dateEntryId: this.dateEntryId,
+    }) as TimeEntry),
+    mergeMap((time) => this.timeEntryService.add(time)),
+  ) as Subject<any>;
 
   constructor(
-    private fb: FormBuilder,
-    private timeRangeStore: TimeRangeStore,
-    private timeRangeService: TimeRangeService,
+    private timeEntryService: TimeEntryService
   ) {
-    this.form = fb.group({
-      date: fb.control(new Date(), [Validators.required]),
-      start: fb.control('09:20', [Validators.required, Validators.pattern(/^[0-2][0-9]:[0-6][0-9]$/)]),
-      end: fb.control('17:32', [Validators.required, Validators.pattern(/^[0-2][0-9]:[0-6][0-9]$/)]),
-    })
   }
 
-  ngOnInit() {
-    this.save$.pipe(
-      mergeMap(() => {
-        if (this.form.valid) {
-          return this.timeRangeService.add(this.parseTimeRange(this.form.get('start').value, this.form.get('end').value))
-        } else {
-          console.error('Form not valid')
-          return empty();
-        }
-      }),
-    ).subscribe();
-  }
-
-  // FIXME: In Date add Komponente auslagern
-  private parseDate(timeString: string, date: Date): Date {
-    let [hour, minute]: number[] = timeString.split(':').map(s => parseInt(s));
-    return flow(setMinutes(minute), setHours(hour))(date);
-  }
-
-  private parseTimeRange(startString: string, endString: string) {
-    const start: Date = this.parseDate(startString, this.form.get('date').value);
-    let end: Date = this.parseDate(endString, this.form.get('date').value);
-    if (isBefore(end, start)) {
-      end = addDays(end, 1);
-    }
-    return {
-      id: uuid(),
-      start,
-      end
-    };
+  ngOnInit(): void {
+    this.add$.subscribe();
   }
 }
