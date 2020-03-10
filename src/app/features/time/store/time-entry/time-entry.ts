@@ -1,4 +1,4 @@
-import {LocalTime} from "../../../../lib/time-fns/localtime";
+import {LocalTime} from "src/app/lib/time-fns/localtime";
 
 export class TimeEntry{
   public id: string;

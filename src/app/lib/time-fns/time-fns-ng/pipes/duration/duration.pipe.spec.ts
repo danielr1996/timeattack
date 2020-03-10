@@ -1,4 +1,4 @@
-import { DurationPipe } from 'src/app/global/time/pipes/duration.pipe';
+import { DurationPipe } from 'src/app/lib/time-fns/time-fns-ng/pipes/duration/duration.pipe';
 
 // FIXME: Write tests
 describe('TimePipe', () => {

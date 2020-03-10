@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule} from "@angular/router";
-import {TimeComponent} from "./components/z-time/time.component";
+import {TimeComponent} from "./components/time/time.component";
 
 
 @NgModule({

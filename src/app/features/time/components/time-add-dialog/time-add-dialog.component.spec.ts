@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TimeDisplayComponent } from './time-display.component';
+import { TimeAddDialogComponent } from './time-add-dialog.component';
 
-describe('TimeDisplayComponent', () => {
-  let component: TimeDisplayComponent;
-  let fixture: ComponentFixture<TimeDisplayComponent>;
+describe('TimeAddDialogComponent', () => {
+  let component: TimeAddDialogComponent;
+  let fixture: ComponentFixture<TimeAddDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TimeDisplayComponent ]
+      declarations: [ TimeAddDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TimeDisplayComponent);
+    fixture = TestBed.createComponent(TimeAddDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

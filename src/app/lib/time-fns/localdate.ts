@@ -9,6 +9,6 @@ export class LocalDate {
 
 
   static from(date: Date): LocalDate {
-    return flow(setYear(getYear(date)),setMonth(getMonth(date)),setDay(getDay(date)))(new LocalDate());
+    return flow(setYear(getYear(date)),setMonth(getMonth(date)+1),setDay(getDay(date)))(new LocalDate());
   }
 }

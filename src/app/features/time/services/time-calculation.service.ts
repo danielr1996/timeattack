@@ -8,7 +8,9 @@ import {Observable} from "rxjs";
 import flow from 'lodash/fp/flow'
 import {groupBy} from "lodash";
 import {TimeRangeStore} from "../store/time-range/time-range.store";
-
+/**
+ * @deprecated
+ */
 @Injectable({
   providedIn: 'root'
 })

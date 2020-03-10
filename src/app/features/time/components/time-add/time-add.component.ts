@@ -1,9 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {MatDialog} from "@angular/material/dialog";
 import {Subject} from "rxjs";
-import {map, mergeMap} from "rxjs/operators";
-import {v4 as uuid} from "uuid";
-import {TimeEntry} from "src/app/features/time/store/time-entry/time-entry";
+import {map, mergeMap, tap} from "rxjs/operators";
+import {TimeAddDialogComponent} from "src/app/features/time/components/time-add-dialog/time-add-dialog.component";
 import {TimeEntryService} from "src/app/features/time/services/time-entry.service";
+import {mayBeOfNullable} from "src/app/lib/fp/Maybe";
+import {unpackMaybe} from "src/app/lib/fp/rxjs/unpackMaybe";
 
 @Component({
   selector: 'app-time-add',
@@ -16,18 +18,19 @@ import {TimeEntryService} from "src/app/features/time/services/time-entry.servic
 })
 export class TimeAddComponent implements OnInit {
   @Input() dateEntryId: string;
+
   public add$ = new Subject().pipe(
-    map(() => ({
-      id: uuid(),
-      start: {hour: 7, minute: 0, second: 0, nano: 0},
-      end: {hour: 15, minute: 12, second: 0, nano: 0},
-      dateEntryId: this.dateEntryId,
-    }) as TimeEntry),
-    mergeMap((time) => this.timeEntryService.add(time)),
+    mergeMap(() => this.dialog.open(TimeAddDialogComponent).afterClosed()),
+    // FIXME: Combine Operators
+    map(mayBeOfNullable),
+    unpackMaybe(),
+    map(timeEntry => ({...timeEntry, dateEntryId: this.dateEntryId})),
+    mergeMap(timeEntry => this.timeEntryService.add(timeEntry)),
   ) as Subject<any>;
 
   constructor(
-    private timeEntryService: TimeEntryService
+    private timeEntryService: TimeEntryService,
+    public dialog: MatDialog,
   ) {
   }
 

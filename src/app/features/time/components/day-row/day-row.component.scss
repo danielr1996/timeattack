@@ -1,4 +1,5 @@
 @import "src/gutter";
 
-h3 > *:not(:last-child) {
+h3 > span:not(:last-child) {
+  margin-right: $md;
 }

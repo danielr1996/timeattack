@@ -1,16 +1,15 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {differenceInMinutes} from "src/app/lib/time-fns/fp";
 import {TimeEntry} from "../../store/time-entry/time-entry";
 
 @Component({
   selector: 'app-time-row',
   template: `
     <mat-list-item role="listitem">
-      <div class="flex">
+      <div>
         <mat-icon>access_time</mat-icon>
-<!--        <span>{{timeRange | timeRange}}</span>-->
-<!--        FIXME: in Pipe auslagern-->
-        {{timeEntry.start.hour}}:{{timeEntry.start.minute}} - {{timeEntry.end.hour}}:{{timeEntry.end.minute}}
-<!--        <span>{{totalHours$ | async | time}}</span>-->
+        <span>{{timeEntry | difference}}</span>
+        <span>{{total | duration}}</span>
         <app-time-delete [timeEntry]="timeEntry"></app-time-delete>
       </div>
     </mat-list-item>
@@ -20,7 +19,12 @@ import {TimeEntry} from "../../store/time-entry/time-entry";
 export class TimeRowComponent implements OnInit {
   @Input() timeEntry: TimeEntry;
 
-  constructor() { }
+  get total() {
+    return differenceInMinutes(this.timeEntry.end, this.timeEntry.start);
+  }
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

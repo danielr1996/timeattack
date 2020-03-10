@@ -1,4 +1,4 @@
-import { LocaldatePipe } from './localdate.pipe';
+import { LocaldatePipe } from 'src/app/lib/time-fns/time-fns-ng/pipes/localdate/localdate.pipe';
 
 describe('LocaldatePipe', () => {
   it('create an instance', () => {

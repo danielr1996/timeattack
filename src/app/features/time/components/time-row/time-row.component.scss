@@ -1,0 +1,9 @@
+@import "src/gutter";
+
+
+div {
+
+  *:not(:last-child) {
+    margin-right: $lg;
+  }
+}
