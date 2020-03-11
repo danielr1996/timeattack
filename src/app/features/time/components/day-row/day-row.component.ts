@@ -10,10 +10,10 @@ import {differenceInMinutes, overTime, totalHours} from "src/app/lib/time-fns/fp
   selector: 'app-day-row',
   template: `
     <h3 matSubheader class="flex">
-      <span>{{dateEntry.date | localdate | date}}</span>
+      <span>{{dateEntry?.date | localdate | date}}</span>
       <span>{{totalHours$ | async |duration}}</span>
       <span>{{overTime$ | async | duration}}</span>
-      <app-time-add [dateEntryId]="dateEntry.id"></app-time-add>
+      <app-time-add [dateEntryId]="dateEntry?.id"></app-time-add>
       <app-day-delete [dateEntry]="dateEntry"></app-day-delete>
     </h3>
     <mat-divider></mat-divider>

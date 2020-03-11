@@ -20,7 +20,10 @@ export class TimeRowComponent implements OnInit {
   @Input() timeEntry: TimeEntry;
 
   get total() {
-    return differenceInMinutes(this.timeEntry.end, this.timeEntry.start);
+    if (this.timeEntry) {
+      return differenceInMinutes(this.timeEntry.end, this.timeEntry.start);
+    }
+    return 0;
   }
 
   constructor() {

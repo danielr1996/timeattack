@@ -8,7 +8,7 @@ import {toDate} from "src/app/lib/time-fns/fp";
 export class LocaldatePipe implements PipeTransform {
 
   transform(value: LocalDate): Date {
-    return toDate(value);
+    return !value ? new Date() : toDate(value);
   }
 
 }

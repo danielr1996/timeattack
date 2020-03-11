@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TimeRowComponent } from './time-row.component';
+import {DifferencePipe} from "src/app/lib/time-fns/time-fns-ng/pipes/difference/difference.pipe";
+import {DurationPipe} from "src/app/lib/time-fns/time-fns-ng/pipes/duration/duration.pipe";
 
 describe('TimeRowComponent', () => {
   let component: TimeRowComponent;
@@ -8,7 +10,7 @@ describe('TimeRowComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TimeRowComponent ]
+      declarations: [ TimeRowComponent, DifferencePipe, DurationPipe]
     })
     .compileComponents();
   }));

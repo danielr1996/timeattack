@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DayAddComponent } from './day-add.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 describe('DayAddComponent', () => {
   let component: DayAddComponent;
@@ -8,7 +9,8 @@ describe('DayAddComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DayAddComponent ]
+      declarations: [ DayAddComponent ],
+      imports: [ReactiveFormsModule],
     })
     .compileComponents();
   }));

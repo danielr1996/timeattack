@@ -6,8 +6,8 @@ import {TimeEntry} from "src/app/features/time/store/time-entry/time-entry";
 })
 export class DifferencePipe implements PipeTransform {
 
-  transform(timeEntry: TimeEntry): unknown {
-    return `${timeEntry.start.hour}:${timeEntry.start.minute} - ${timeEntry.end.hour}:${timeEntry.end.minute}`;
+  transform(timeEntry: TimeEntry): string {
+    return !timeEntry ? '' : `${timeEntry.start.hour}:${timeEntry.start.minute} - ${timeEntry.end.hour}:${timeEntry.end.minute}`;
   }
 
 }

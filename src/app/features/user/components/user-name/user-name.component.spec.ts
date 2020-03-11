@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserNameComponent } from './user-name.component';
+import {AngularFireAuth} from "@angular/fire/auth";
+import {AuthenticationService} from "src/app/features/user/services/authentication.service";
+import {of} from "rxjs";
 
 describe('UserNameComponent', () => {
   let component: UserNameComponent;
@@ -8,7 +11,15 @@ describe('UserNameComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserNameComponent ]
+      declarations: [ UserNameComponent ],
+      providers: [{provide: AngularFireAuth, useValue: {}},
+        {
+          provide: AuthenticationService, useValue: {
+            getUser() {
+              return of('hanspeter@email.de');
+            }
+          }
+        }]
     })
     .compileComponents();
   }));
