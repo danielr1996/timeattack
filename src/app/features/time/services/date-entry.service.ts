@@ -27,7 +27,7 @@ export class DateEntryService {
     this.dateEntryStore.add(dateEntry);
     return this.user$.pipe(
       mergeMap(user => from(
-        this.fb.collection('data')
+        this.fb.collection('users')
           .doc(user.uid)
           .collection('dateentries')
           .doc(dateEntry.id)
@@ -39,7 +39,7 @@ export class DateEntryService {
   load(): Observable<any> {
     return this.user$.pipe(
       mergeMap(user =>
-        this.fb.collection('data')
+        this.fb.collection('users')
           .doc(user.uid)
           .collection('dateentries')
           .get()
