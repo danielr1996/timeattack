@@ -56,6 +56,15 @@ export class TimeEntryService {
 
   delete(id: string): Observable<any> {
     this.timeEntryStore.remove(id);
-    return of();
+    return this.user$.pipe(
+      mergeMap(user => from(
+        this.fb.collection('users')
+          .doc(user.uid)
+          .collection('timeEntries')
+          .doc(id)
+          .delete()
+        )
+      )
+    );
   }
 }
