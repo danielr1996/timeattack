@@ -95,7 +95,6 @@ export class TimeRangeService {
   remove(id: string): Observable<void> {
     this.timeRangeStore.remove(id);
     return this.user$.pipe(
-      tap(console.log),
       mergeMap(user => from(
         this.fb
           .collection(this.TIMERANGES_KEY)
@@ -181,7 +180,6 @@ export class MigrationComponent implements OnInit {
           })
         })
       }),
-      tap(console.log)
     ).subscribe()
   }
 }

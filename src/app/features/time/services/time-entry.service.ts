@@ -50,6 +50,7 @@ export class TimeEntryService {
       pluck('docs'),
       mergeMap(from),
       map(data => data.data()),
+      // tap(timeEntry=>console.log('TimeEntry: ',timeEntry)),
       tap(timeEntry => this.timeEntryStore.add(timeEntry)),
     );
   }

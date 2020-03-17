@@ -8,7 +8,7 @@ import {MatListModule} from "@angular/material/list";
 import {MatIconModule} from "@angular/material/icon";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {DateAdapter, MatNativeDateModule, NativeDateAdapter} from "@angular/material/core";
-import {TimeOvertimeComponent} from './components/zz-time-overtime/time-overtime.component';
+import {TimeOvertimeComponent} from './components/time-overtime/time-overtime.component';
 import {TimeComponent} from './components/time/time.component';
 import {TimeRoutingModule} from "./time-routing.module";
 import {DayAddComponent} from './components/day-add/day-add.component';
