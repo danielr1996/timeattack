@@ -21,12 +21,14 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import {OverlayModule} from "@angular/cdk/overlay";
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ThemeSwitcherComponent } from 'src/app/global/app/components/theme-switcher/theme-switcher.component';
+import { MigrationComponent } from './components/migration/migration.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolbarComponent,
-    ThemeSwitcherComponent
+    ThemeSwitcherComponent,
+    MigrationComponent
   ],
   imports: [
     MatTooltipModule,
