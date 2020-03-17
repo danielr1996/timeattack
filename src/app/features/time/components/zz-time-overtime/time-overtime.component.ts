@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
-import {getGroupedOverTime, TimeCalculationService} from "../../services/time-calculation.service";
 
 @Component({
   selector: 'app-zz-time-overtime',
@@ -9,12 +8,12 @@ import {getGroupedOverTime, TimeCalculationService} from "../../services/time-ca
   styleUrls: ['./time-overtime.component.scss']
 })
 export class TimeOvertimeComponent implements OnInit {
-  public overTime$: Observable<number> = this.timeCalculationService.groupByDays().pipe(
-    map(getGroupedOverTime),
-  );
+  // public overTime$: Observable<number> = this.timeCalculationService.groupByDays().pipe(
+  //   map(getGroupedOverTime),
+  // );
 
-  constructor(private timeCalculationService: TimeCalculationService) {
-  }
+  // constructor(private timeCalculationService: TimeCalculationService) {
+  // }
 
   ngOnInit() {
   }

@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import {LocalDate} from "src/app/lib/time-fns/localdate";
-import {toDate} from "src/app/lib/time-fns/fp";
+import {toDate} from "src/app/lib/time-fns/fp2";
 
 @Pipe({
   name: 'localdate'

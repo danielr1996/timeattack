@@ -1,5 +1,5 @@
 import {getYear, getMonth, getDay} from "date-fns/fp";
-import flow from 'lodash/fp/flow'
+import flow from 'lodash/fp/flow';
 import {setDay, setMonth, setYear} from "./fp";
 
 export class LocalDate {

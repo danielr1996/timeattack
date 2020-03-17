@@ -4,7 +4,7 @@ import {TimeEntry} from "src/app/features/time/store/time-entry/time-entry";
 import {TimeEntryService} from "src/app/features/time/services/time-entry.service";
 import {from, Observable} from "rxjs";
 import {filter, map, mergeMap, toArray} from "rxjs/operators";
-import {differenceInMinutes, overTime, totalHours} from "src/app/lib/time-fns/fp";
+import {overTime, totalHours} from "src/app/lib/time-fns/fp2";
 
 @Component({
   selector: 'app-day-row',

@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {differenceInMinutes} from "src/app/lib/time-fns/fp";
+import {differenceInMinutes} from "src/app/lib/time-fns/fp2";
 import {TimeEntry} from "../../store/time-entry/time-entry";
 
 @Component({

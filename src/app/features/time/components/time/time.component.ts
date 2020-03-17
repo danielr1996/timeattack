@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 import {DateEntryService} from "../../services/date-entry.service";
 import {DateEntry} from "../../store/date-entry/date-entry";
-import {MockDateEntryService} from 'src/app/features/time/services/mock-date-entry.service';
+import {tap} from "rxjs/operators";
 
 @Component({
   selector: 'app-time',
@@ -21,7 +21,7 @@ export class TimeComponent implements OnInit {
   public dateEntries$: Observable<DateEntry[]> = this.dateEntryService.get();
 
   constructor(
-    private dateEntryService: MockDateEntryService,
+    private dateEntryService: DateEntryService,
   ) {
   }
 
