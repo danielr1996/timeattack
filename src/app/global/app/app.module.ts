@@ -8,7 +8,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {TimeModule} from "../../features/time/time.module";
 import {AkitaNgDevtools} from '@datorama/akita-ngdevtools';
-import {environment} from '../../../environments/environment';
 import {AppRoutingModule} from "./app-routing.module";
 import {HttpClientModule} from "@angular/common/http";
 import {AngularFireModule} from "@angular/fire";
@@ -18,15 +17,17 @@ import {ServiceWorkerModule} from '@angular/service-worker';
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {MatTooltipModule} from "@angular/material/tooltip";
-import {OverlayModule} from "@angular/cdk/overlay";
-import { ToolbarComponent } from './components/toolbar/toolbar.component';
-import { ThemeSwitcherComponent } from 'src/app/global/app/components/theme-switcher/theme-switcher.component';
+import {ToolbarComponent} from './components/toolbar/toolbar.component';
+import {ThemeSwitcherComponent} from 'src/app/global/app/components/theme-switcher/theme-switcher.component';
+import {MigrationComponent} from './components/migration/migration.component';
+import {environment} from "src/environments/environment";
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolbarComponent,
-    ThemeSwitcherComponent
+    ThemeSwitcherComponent,
+    MigrationComponent
   ],
   imports: [
     MatTooltipModule,

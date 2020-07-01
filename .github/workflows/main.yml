@@ -1,9 +1,5 @@
 name: Pipeline
-on:
-  push:
-#    branches:
-#      - master
-
+on: [push]
 jobs:
   build:
     name: Build
@@ -23,9 +19,21 @@ jobs:
         with:
           name: dist
           path: dist/timeattack
+  test:
+    name: Test
+    runs-on: 'ubuntu-latest'
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Test
+        run: |
+          npm ci
+          npx gulp test
   deploy:
     name: Deploy
-    needs: build
+    needs: [build, test]
     runs-on: 'ubuntu-latest'
     steps:
       - uses: actions/checkout@v2
@@ -37,7 +45,7 @@ jobs:
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
-          args: deploy --only hosting
+          args: deploy --only hosting,firestore:rules
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
           PROJECT_ID: timeattack-dani

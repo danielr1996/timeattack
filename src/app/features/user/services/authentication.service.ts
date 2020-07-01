@@ -3,7 +3,7 @@ import {AngularFireAuth} from "@angular/fire/auth";
 import {User} from "firebase";
 import {from, Observable, ReplaySubject, Subject} from "rxjs";
 import {map} from "rxjs/operators";
-import {Maybe, mayBeOfNullable} from "src/app/util/Maybe";
+import {Maybe, mayBeOfNullable} from "src/app/lib/fp/Maybe";
 import UserCredential = firebase.auth.UserCredential;
 
 @Injectable({

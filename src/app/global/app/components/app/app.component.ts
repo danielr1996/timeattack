@@ -1,7 +1,6 @@
-import {Component, HostBinding, OnInit} from '@angular/core';
-import {Observable} from "rxjs";
-import {AuthenticationService} from "src/app/features/user/services/authentication.service";
-import {Overlay, OverlayContainer} from "@angular/cdk/overlay";
+import {Component, OnInit} from '@angular/core';
+import {DateEntryService} from "src/app/features/time/services/date-entry.service";
+import {TimeEntryService} from "src/app/features/time/services/time-entry.service";
 
 @Component({
   selector: 'app-root',
@@ -10,6 +9,14 @@ import {Overlay, OverlayContainer} from "@angular/cdk/overlay";
 })
 export class AppComponent implements OnInit {
 
+  constructor(
+    private dateEntryService: DateEntryService,
+    private timeEntryService: TimeEntryService,
+  ) {
+  }
+
   ngOnInit(): void {
+    this.dateEntryService.load().subscribe();
+    this.timeEntryService.load().subscribe();
   }
 }

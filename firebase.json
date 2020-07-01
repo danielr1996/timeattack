@@ -5,6 +5,7 @@
       "public": "dist/timeattack",
       "ignore": [
         "firebase.json",
+        "firebase.rules",
         "**/.*",
         "**/node_modules/**"
       ],
@@ -15,5 +16,8 @@
         }
       ]
     }
-  ]
+  ],
+  "database": {
+    "rules": "firebase.rules"
+  }
 }

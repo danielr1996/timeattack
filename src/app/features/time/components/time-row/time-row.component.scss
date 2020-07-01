@@ -1,5 +1,9 @@
-.flex{
-  width: 100%;
-  display: flex !important;
-  justify-content: space-between;
+@import "src/gutter";
+
+
+div {
+
+  *:not(:last-child) {
+    margin-right: $lg;
+  }
 }
