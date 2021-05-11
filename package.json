@@ -26,7 +26,7 @@
     "@datorama/akita": "^4.19.2",
     "date-fns": "^2.9.0",
     "firebase": ">= 5.5.7 <8",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
